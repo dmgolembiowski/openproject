@@ -28,19 +28,19 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class UsersSettingsController < ::ApplicationController
-  layout 'admin'
-  menu_item :user_settings
+module Admin::Settings
+  class DisplaySettingsController < ::Admin::SettingsController
+    menu_item :settings_display
 
-  def show
-    render template: 'users/users_settings'
-  end
+    def show
+      @options = {}
+      @options[:user_format] = User::USER_FORMATS_STRUCTURE.keys.map { |f| [User.current.name(f), f.to_s] }
 
-  def default_breadcrumb
-    t(:label_user_settings)
-  end
+      render template: 'settings/_display'
+    end
 
-  def show_local_breadcrumb
-    true
+    def default_breadcrumb
+      t(:label_display)
+    end
   end
 end

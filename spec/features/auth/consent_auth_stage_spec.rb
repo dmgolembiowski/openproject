@@ -152,7 +152,7 @@ describe 'Authentication Stages', type: :feature do
       expect_logged_in
 
       # Update consent date
-      visit users_settings_path
+      visit users_admin_settings_path
       find("#toggle_consent_time").set(true)
 
       click_on 'Save'

@@ -28,16 +28,18 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class Settings::ProjectsController < SettingsController
-  include AdminSettingsUpdater
+module Admin::Settings
+  class IncomingMailsSettingsController < ::Admin::SettingsController
+    current_menu_item [:show] do
+      :incoming_mails
+    end
 
-  menu_item :settings_projects
+    def default_breadcrumb
+      t(:label_incoming_emails)
+    end
 
-  def show
-    render template: 'settings/_projects'
-  end
-
-  def default_breadcrumb
-    t(:label_project_plural)
+    def show_local_breadcrumb
+      true
+    end
   end
 end

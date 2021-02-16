@@ -1,3 +1,5 @@
+#-- encoding: UTF-8
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) 2012-2021 the OpenProject GmbH
@@ -26,14 +28,20 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-require 'spec_helper'
+module Admin::Settings
+  class UsersSettingsController < ::Admin::SettingsController
+    menu_item :user_settings
 
-describe AuthenticationController, type: :controller do
-  describe 'show.html' do
-    def fetch
-      get 'show'
+    def show
+      render template: 'users/users_settings'
     end
 
-    it_behaves_like 'a controller action with require_admin'
+    def default_breadcrumb
+      t(:label_user_settings)
+    end
+
+    def show_local_breadcrumb
+      true
+    end
   end
 end
